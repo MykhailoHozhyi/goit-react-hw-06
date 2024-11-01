@@ -1,7 +1,13 @@
 import { HiPhone, HiUser } from 'react-icons/hi2';
 import style from './Contact.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 
-export default function Contact({ name, number, id, onDeleteContact }) {
+export default function Contact({ name, number, id }) {
+  const dispatch = useDispatch();
+
+  const onDeleteContact = () => dispatch(deleteContact(id));
+
   return (
     <>
       <div>
@@ -15,7 +21,7 @@ export default function Contact({ name, number, id, onDeleteContact }) {
         </p>
       </div>
 
-      <button type="button" onClick={() => onDeleteContact(id)}>
+      <button type="button" onClick={onDeleteContact}>
         Delete
       </button>
     </>
